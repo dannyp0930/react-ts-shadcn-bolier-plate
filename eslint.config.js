@@ -17,7 +17,6 @@ export default tseslint.config(
     ],
     languageOptions: {
       ecmaVersion: 2020,
-      parser: tseslint.parser,
       globals: {
         ...globals.browser,
         ...globals.node,
@@ -25,9 +24,8 @@ export default tseslint.config(
       },
       sourceType: 'module',
       parserOptions: {
-        ecmaFeatures: {
-          jsx: true,
-        },
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     plugins: {
