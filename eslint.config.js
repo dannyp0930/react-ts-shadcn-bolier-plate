@@ -10,6 +10,11 @@ export default tseslint.config(
   { ignores: ['dist'] },
   {
     files: ['**/*.{ts,tsx}'],
+    extends: [
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.strictTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
+    ],
     languageOptions: {
       ecmaVersion: 2020,
       parser: tseslint.parser,
