@@ -1,18 +1,23 @@
+import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Layout from '@/components/Layout';
-import Home from '@/pages/home';
-import Event from '@/pages/event';
-import User from '@/pages/user';
+import Loading from '@/components/Loading';
+
+const Home = lazy(() => import('@/pages/home'));
+const Event = lazy(() => import('@/pages/event'));
+const User = lazy(() => import('@/pages/user'));
 
 function AppRouter() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="/event" element={<Event />} />
-        <Route path="/user" element={<User />} />
-      </Route>
-    </Routes>
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/event" element={<Event />} />
+          <Route path="/user" element={<User />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
