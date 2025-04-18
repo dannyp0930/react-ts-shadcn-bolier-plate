@@ -13,8 +13,12 @@ function AppRouter() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/event" element={<Event />} />
-          <Route path="/user" element={<User />} />
+          <Route path="/event">
+            <Route index element={<Event />}></Route>
+          </Route>
+          <Route path="/user">
+            <Route index element={<User />}></Route>
+          </Route>
         </Route>
       </Routes>
     </Suspense>
