@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import {
   Sidebar,
   SidebarContent,
@@ -17,7 +18,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
-import { NavLink } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 interface SidebarItem {
@@ -48,7 +48,7 @@ export default function AppSidebar() {
       links: [
         {
           key: '2',
-          title: '유저 관리',
+          title: '사용자 관리',
           href: '/user',
         },
       ],
