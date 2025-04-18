@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Layout from '@/components/Layout';
-import Loading from '@/components/Loading';
+import Layout from '@/components/layout';
+import Loading from '@/components/common/Loading';
 
 const Home = lazy(() => import('@/pages/home'));
 const Event = lazy(() => import('@/pages/event'));
