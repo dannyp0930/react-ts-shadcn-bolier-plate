@@ -5,7 +5,7 @@
 # 로컬 실행
 $ pnpm dev
 # 개발 서버 빌드
-$ pnpm build
+$ pnpm build:dev
 # 라이브 서버 빌드
 $ pnpm build:prod
 ```
