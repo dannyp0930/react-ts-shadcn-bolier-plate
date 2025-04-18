@@ -4,31 +4,63 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarHeader,
+  SidebarMenu,
+  SidebarMenuBadge,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
+import { Link } from 'react-router-dom';
+
+interface SidebarItem {
+  key: string;
+  title: string;
+  href?: string;
+  links?: SidebarSubItem[];
+  number?: number;
+}
+
+interface SidebarSubItem {
+  key: string;
+  title: string;
+  href: string;
+}
 
 export default function AppSidebar() {
-  const items = [
+  const items: SidebarItem[] = [
     {
+      key: 'home',
       title: 'HOME',
       href: '/',
+      number: 0,
     },
     {
-      title: '이벤트 관리',
-      href: '/event',
+      key: 'user',
+      title: '사용자',
       links: [
         {
-          title: 'HOME',
-          href: '/',
+          key: '2',
+          title: '유저 관리',
+          href: '/user',
         },
       ],
+      number: 0,
     },
     {
-      title: '유저 관리',
-      href: '/user',
+      key: 'event',
+      title: '이벤트',
       links: [
         {
-          title: 'HOME',
-          href: '/',
+          key: '1',
+          title: '이벤트 관리',
+          href: '/event',
         },
       ],
     },
@@ -38,7 +70,40 @@ export default function AppSidebar() {
       <SidebarHeader />
       <SidebarContent>
         {items.map((item) => (
-          <SidebarGroup key={item.title}></SidebarGroup>
+          <SidebarMenu key={item.key}>
+            {item.links ? (
+              <Collapsible>
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton>{item.title}</SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  {item.number !== undefined && (
+                    <SidebarMenuBadge>{item.number}</SidebarMenuBadge>
+                  )}
+                </SidebarMenuItem>
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    {item.links.map((link) => (
+                      <SidebarMenuSubItem key={link.key}>
+                        <SidebarMenuSubButton asChild>
+                          <Link to={link.href}>{link.title}</Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </Collapsible>
+            ) : (
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <Link to={item.href ?? ''}>{item.title}</Link>
+                </SidebarMenuButton>
+                {item.number !== undefined && (
+                  <SidebarMenuBadge>{item.number}</SidebarMenuBadge>
+                )}
+              </SidebarMenuItem>
+            )}
+          </SidebarMenu>
         ))}
         <SidebarGroup />
         <SidebarGroup />
