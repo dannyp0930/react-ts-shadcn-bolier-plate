@@ -1,17 +1,18 @@
 import { Outlet } from 'react-router-dom';
-import Header from './Header';
-import Sidebar from './sidebar';
-import Footer from './Footer';
+import { SidebarProvider } from '@/components/ui/sidebar';
+import AppHeader from '@/components/layout/AppHeader';
+import AppSidebar from '@/components/layout/AppSidebar';
+import AppFooter from '@/components/layout/AppFooter';
 
 export default function Layout() {
   return (
-    <>
-      <Sidebar />
+    <SidebarProvider>
+      <AppSidebar />
       <main>
-        <Header />
+        <AppHeader />
         <Outlet />
-        <Footer />
+        <AppFooter />
       </main>
-    </>
+    </SidebarProvider>
   );
 }

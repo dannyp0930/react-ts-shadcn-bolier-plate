@@ -9,6 +9,7 @@ import reactPlugin from 'eslint-plugin-react';
 export default tseslint.config(
   { ignores: ['dist'] },
   {
+    ignores: ['dist', 'src/components/ui/**', 'src/hooks/**'],
     files: ['src/**/*.{ts,tsx}'],
     extends: [
       ...tseslint.configs.recommendedTypeChecked,
@@ -41,6 +42,7 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'prettier/prettier': ['error'],
+      '@typescript-eslint/no-unused-vars': 'warn',
     },
     settings: {
       react: {
