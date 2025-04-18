@@ -17,7 +17,8 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { cn } from '@/lib/utils';
 
 interface SidebarItem {
   key: string;
@@ -85,8 +86,15 @@ export default function AppSidebar() {
                   <SidebarMenuSub>
                     {item.links.map((link) => (
                       <SidebarMenuSubItem key={link.key}>
-                        <SidebarMenuSubButton asChild>
-                          <Link to={link.href}>{link.title}</Link>
+                        <SidebarMenuSubButton>
+                          <NavLink
+                            to={link.href}
+                            className={({ isActive }) =>
+                              cn('w-full', isActive && 'font-semibold')
+                            }
+                          >
+                            {link.title}
+                          </NavLink>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
                     ))}
@@ -95,8 +103,15 @@ export default function AppSidebar() {
               </Collapsible>
             ) : (
               <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <Link to={item.href ?? ''}>{item.title}</Link>
+                <SidebarMenuButton>
+                  <NavLink
+                    to={item.href ?? ''}
+                    className={({ isActive }) =>
+                      cn('w-full', isActive && 'font-semibold')
+                    }
+                  >
+                    {item.title}
+                  </NavLink>
                 </SidebarMenuButton>
                 {item.number !== undefined && (
                   <SidebarMenuBadge>{item.number}</SidebarMenuBadge>
