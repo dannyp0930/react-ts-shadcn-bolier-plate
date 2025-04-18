@@ -42,7 +42,6 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'prettier/prettier': ['error'],
-      '@typescript-eslint/no-unused-vars': 'warn',
     },
     settings: {
       react: {
