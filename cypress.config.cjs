@@ -18,8 +18,5 @@ module.exports = defineConfig({
     viewportWidth: 1920,
     viewportHeight: 1080,
     baseUrl: process.env.VITE_BASE_URL,
-    env: {
-      API_URL: process.env.VITE_API_URL,
-    },
   },
 })
