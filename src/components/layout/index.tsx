@@ -9,7 +9,9 @@ export default function Layout() {
       <AppSidebar />
       <main className="grow">
         <AppHeader />
-        <Outlet />
+        <article className="p-6">
+          <Outlet />
+        </article>
       </main>
     </SidebarProvider>
   );
