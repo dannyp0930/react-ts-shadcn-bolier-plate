@@ -69,11 +69,13 @@ export default function AppSidebar() {
       title: '알림 메시지',
       href: 'https://sm.onoffmix.com/Alarm',
       icon: Bell,
+      number: 0,
     },
     {
       key: 'cs',
       title: '고객센터',
       icon: CircleHelp,
+      number: 0,
       links: [
         {
           key: 'cs-faq-list',
@@ -119,7 +121,6 @@ export default function AppSidebar() {
           icon: UserCog,
         },
       ],
-      number: 0,
     },
     {
       key: 'event',
@@ -194,6 +195,48 @@ export default function AppSidebar() {
           href: 'https://sm.onoffmix.com/Advert/skin',
           icon: ImageUp,
         },
+        {
+          key: 'code-ofm',
+          title: '온오프믹스 코드 관리',
+          href: 'https://sm.onoffmix.com/code/ofm',
+          icon: ImageUp,
+        },
+        {
+          key: 'cs-sms',
+          title: '문자보내기',
+          href: 'https://sm.onoffmix.com/cs/sms',
+          icon: ImageUp,
+        },
+        {
+          key: 'advert-ad-list',
+          title: '광고 문의 리스트',
+          href: 'https://sm.onoffmix.com/Advert/adList',
+          icon: ImageUp,
+        },
+        {
+          key: 'advert-partner-center-inquire-list',
+          title: '파트너센터 문의 리스트',
+          href: 'https://sm.onoffmix.com/Advert/partnerCenterInquireList',
+          icon: ImageUp,
+        },
+        {
+          key: 'cs-personal-info-usage-email',
+          title: '개인정보 이용내역 안내 메일 관리',
+          href: 'https://sm.onoffmix.com/cs/personalInfoUsageEmail',
+          icon: ImageUp,
+        },
+        {
+          key: 'nav-hot-keyword',
+          title: '헤더 핫 키워드 관리',
+          href: 'https://sm.onoffmix.com/navHotKeyword',
+          icon: ImageUp,
+        },
+        {
+          key: 'cs-footer-notice',
+          title: '하단 공지사항 관리',
+          href: 'https://sm.onoffmix.com/cs/footerNotice',
+          icon: ImageUp,
+        },
       ],
     },
   ];
@@ -227,7 +270,7 @@ export default function AppSidebar() {
                   <SidebarMenuSub>
                     {item.links.map((link) => (
                       <SidebarMenuSubItem key={link.key}>
-                        <SidebarMenuSubButton asChild>
+                        <SidebarMenuSubButton asChild size="sm">
                           <NavLink
                             to={link.href}
                             className={({ isActive }) =>
