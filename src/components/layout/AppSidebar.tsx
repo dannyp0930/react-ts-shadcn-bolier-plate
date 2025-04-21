@@ -2,8 +2,6 @@ import { NavLink } from 'react-router-dom';
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuBadge,
@@ -19,6 +17,7 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import { cn } from '@/lib/utils';
+import { ChevronDown } from 'lucide-react';
 
 interface SidebarItem {
   key: string;
@@ -36,12 +35,6 @@ interface SidebarSubItem {
 
 export default function AppSidebar() {
   const items: SidebarItem[] = [
-    {
-      key: 'home',
-      title: 'HOME',
-      href: '/',
-      number: 0,
-    },
     {
       key: 'user',
       title: '사용자',
@@ -68,18 +61,27 @@ export default function AppSidebar() {
   ];
   return (
     <Sidebar>
-      <SidebarHeader />
-      <SidebarContent>
+      <SidebarHeader className="p-3.5">
+        <NavLink to="/">
+          <img className="m-auto" src="/assets/logo.png" alt="onoffmix" />
+        </NavLink>
+      </SidebarHeader>
+      <SidebarContent className="p-2">
         {items.map((item) => (
           <SidebarMenu key={item.key}>
             {item.links ? (
-              <Collapsible>
+              <Collapsible className="group/collapsible">
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
-                    <SidebarMenuButton>{item.title}</SidebarMenuButton>
+                    <SidebarMenuButton>
+                      {item.title}
+                      <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                    </SidebarMenuButton>
                   </CollapsibleTrigger>
                   {item.number !== undefined && (
-                    <SidebarMenuBadge>{item.number}</SidebarMenuBadge>
+                    <SidebarMenuBadge className="mr-5">
+                      {item.number}
+                    </SidebarMenuBadge>
                   )}
                 </SidebarMenuItem>
                 <CollapsibleContent>
@@ -114,16 +116,15 @@ export default function AppSidebar() {
                   </NavLink>
                 </SidebarMenuButton>
                 {item.number !== undefined && (
-                  <SidebarMenuBadge>{item.number}</SidebarMenuBadge>
+                  <SidebarMenuBadge className="mr-5">
+                    {item.number}
+                  </SidebarMenuBadge>
                 )}
               </SidebarMenuItem>
             )}
           </SidebarMenu>
         ))}
-        <SidebarGroup />
-        <SidebarGroup />
       </SidebarContent>
-      <SidebarFooter />
     </Sidebar>
   );
 }
