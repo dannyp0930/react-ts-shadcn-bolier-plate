@@ -17,7 +17,16 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import { cn } from '@/lib/utils';
-import { ChevronDown } from 'lucide-react';
+import {
+  Bell,
+  Calendar,
+  CalendarCog,
+  ChevronDown,
+  LucideProps,
+  User,
+  UserCog,
+} from 'lucide-react';
+import { ForwardRefExoticComponent, RefAttributes } from 'react';
 
 interface SidebarItem {
   key: string;
@@ -25,16 +34,26 @@ interface SidebarItem {
   href?: string;
   links?: SidebarSubItem[];
   number?: number;
+  icon: ForwardRefExoticComponent<Omit<LucideProps, 'ref'>> &
+    RefAttributes<SVGAElement>;
 }
 
 interface SidebarSubItem {
   key: string;
   title: string;
   href: string;
+  icon: ForwardRefExoticComponent<Omit<LucideProps, 'ref'>> &
+    RefAttributes<SVGAElement>;
 }
 
 export default function AppSidebar() {
   const items: SidebarItem[] = [
+    {
+      key: 'alarm',
+      title: '알림 메시지',
+      href: 'https://sm.onoffmix.com/Alarm',
+      icon: Bell,
+    },
     {
       key: 'user',
       title: '사용자',
@@ -43,18 +62,22 @@ export default function AppSidebar() {
           key: '2',
           title: '사용자 관리',
           href: '/user',
+          icon: UserCog,
         },
       ],
+      icon: User,
       number: 0,
     },
     {
       key: 'event',
       title: '이벤트',
+      icon: Calendar,
       links: [
         {
           key: '1',
           title: '이벤트 관리',
           href: '/event',
+          icon: CalendarCog,
         },
       ],
     },
@@ -74,6 +97,7 @@ export default function AppSidebar() {
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton>
+                      <item.icon />
                       {item.title}
                       <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
                     </SidebarMenuButton>
@@ -95,6 +119,7 @@ export default function AppSidebar() {
                               cn('w-full', isActive && 'font-semibold')
                             }
                           >
+                            <link.icon />
                             {link.title}
                           </NavLink>
                         </SidebarMenuSubButton>
@@ -105,13 +130,14 @@ export default function AppSidebar() {
               </Collapsible>
             ) : (
               <SidebarMenuItem>
-                <SidebarMenuButton>
+                <SidebarMenuButton asChild>
                   <NavLink
                     to={item.href ?? ''}
                     className={({ isActive }) =>
                       cn('w-full', isActive && 'font-semibold')
                     }
                   >
+                    <item.icon />
                     {item.title}
                   </NavLink>
                 </SidebarMenuButton>
