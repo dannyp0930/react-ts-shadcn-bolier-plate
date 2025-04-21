@@ -62,7 +62,7 @@ export default function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className="p-3.5">
-        <NavLink to="/">
+        <NavLink to="https://sm.onoffmix.com">
           <img className="m-auto" src="/assets/logo.png" alt="onoffmix" />
         </NavLink>
       </SidebarHeader>
@@ -88,7 +88,7 @@ export default function AppSidebar() {
                   <SidebarMenuSub>
                     {item.links.map((link) => (
                       <SidebarMenuSubItem key={link.key}>
-                        <SidebarMenuSubButton>
+                        <SidebarMenuSubButton asChild>
                           <NavLink
                             to={link.href}
                             className={({ isActive }) =>
